@@ -28,6 +28,7 @@
             echo "<th style='width: 50px'>Make</th>";
             echo "<th style='width: 50px'>Model</th>";
             echo "<th style='width: 50px'>Asking Price</th>";
+            echo "<th style='width: 50px'>Delete</th>";
             echo "<tr>\n"; //close the header row
 
             $class="odd"; //keep track of class to implement alternate row styling
@@ -44,8 +45,11 @@
                 // echo "<td>".$result_ar['Make']."</td>";
                 //open cardetails and pass it query string of vin= followed by a vin
                 echo "<td><a href='7carDetails.php?VIN=".$result_ar['VIN']."'>".$result_ar['Make']."</a></td>";
-                echo "<td>".$result_ar['Model']."</td>";
+
+                //to be used as edit by passing the model then targeting all data related to that model for edit in the next page.
+                echo "<td><a href='7updateCarDetails.php?Model=".$result_ar['Model']."'>".$result_ar['Model']."</td>";
                 echo "<td>".$result_ar['ASKING_PRICE']."</td>";
+                echo "<td><a href = '7deleteCar.php?VIN=".$result_ar['VIN']."'>"."Delete"."</a></td>";
                 echo "</tr>\n";
           
 
