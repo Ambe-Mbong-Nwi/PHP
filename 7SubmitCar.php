@@ -4,7 +4,11 @@
     </head>
     <body bgcolor="#FFFFFF" text="#000000">
         <?php 
+        //         At the risk of stating the obvious, the stripslashes command removes any slashes the
+        // users and mysql_real_escape command removes the quote characters. eg $model = stripslashes($mypassword);
+        // $make = mysql_real_escape_string($myusername);
         //capturing the values entered by the user after submission
+
             $VIN = $_POST['VIN'];
             $Make  = $_POST['Make'];
             $Model = $_POST['Model'];
@@ -29,7 +33,8 @@
 
         //connect to the Cars database
         //$mysqli is The object representing the MySQL connection
-        $mysqli = new mysqli('localhost', 'ambe', 'FocusMoi', 'Cars');
+       // $mysqli = new mysqli('localhost', 'ambe', 'FocusMoi', 'Cars');
+         include '7includedb.php';   //placed statement in diff file and reused here for ease in case change is ever needed
 
         //check connection
         if (mysqli_connect_error()) {
