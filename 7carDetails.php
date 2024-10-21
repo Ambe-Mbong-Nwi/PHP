@@ -16,6 +16,8 @@
             //builds a query using the value passed to the form in the Query String, and assigns it to the cleverly named variable $query
             $query = "SELECT * FROM INVENTORY WHERE VIN = '$vin'";
 
+           
+
             //query to the database
             //run the query against the mySQL database and create something called a
             // ‘result set’. A result set is the set of data that results from the running of a query. This
@@ -40,6 +42,7 @@
                 $mileage = $result_ar['MILEAGE'];
                 $transmission = $result_ar['TRANSMISSION'];
                 $price = $result_ar['ASKING_PRICE'];
+                //$image = $result_ar['images'];  //changed to use images from images table instead.
 
             }
 
@@ -47,8 +50,28 @@
             echo "<p>Asking Price: $price</p>";
             echo "<p>Exterior Color: $color</p>";
             echo "<p>Interior Color: $interior</p>";
+            echo "<img src='images/$image'>";
+
+
+
+            //getting the images from the image table.
+
+             $query2 = "SELECT * FROM images WHERE VIN = '$vin'";  //getting car images from images table
+
+             //runs the query and checks to see if any results were returned from the database.
+            if ($result2 = $mysqli->query($query2)) {
+               // loops through the result set as many times as there are rows.
+                while ($result_ar2 = mysqli_fetch_assoc($result2)) {
+                    $image = $result_ar2['ImageFile'];
+                    echo "<img src='images/$image' width='250'>";
+                }
+            }
 
             $mysqli->close();
         ?>
     </body>
 </html>
+
+
+<!-- 
+for images here, store image in the images folder, in the db input the name of those images then in the code that displays them put the path to the image using the variable as seen above. -->
